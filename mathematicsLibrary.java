@@ -1,17 +1,19 @@
+package libsubject;
+
 
 /**
  * This is a collection of formulas that Java's math class left out.
  *
  * @author nate
  */
-public class mathematicsLibrary {
+public abstract class mathematicsLibrary {
     /**
      * Returns the square of the number in the parameter, but does not change
      * it's value.
      *
      * @param toSquare
      */
-    public double returnSquareOf(double number) {
+    public static double returnSquareOf(double number) {
         return number * number;
     }
 
@@ -20,7 +22,7 @@ public class mathematicsLibrary {
      *
      * @param number
      */
-    public void makeSquare(double number) {
+    public static void makeSquare(double number) {
         number *= number;
     }
 
@@ -30,7 +32,7 @@ public class mathematicsLibrary {
      * @param list
      * @return mean
      */
-    public double getMean(double[] list) {
+    public static double getMean(double[] list) {
         double collector = 0.0;
         for (int index = 0; index < list.length; index++) {
             collector += list[index];
@@ -48,7 +50,7 @@ public class mathematicsLibrary {
      * @param list
      * @return stdDev
      */
-    public double calculateStandardDeviation(double[] list) {
+    public static double calculateStandardDeviation(double[] list) {
         if (list.length == 1) {
             return list[0];
         }
@@ -58,11 +60,11 @@ public class mathematicsLibrary {
 
         for (int index = 0; index < list.length; index++) {
             localList[index] = list[index];
-            localList[index] -= this.getMean(localList);
+            localList[index] -= mathematicsLibrary.getMean(localList);
         }
 
         for (int index = 0; index < localList.length; index++) {
-            collector += this.returnSquareOf(localList[index]);
+            collector += mathematicsLibrary.returnSquareOf(localList[index]);
         }
 
         return Math.sqrt(collector /= (localList.length - 1));
@@ -76,7 +78,7 @@ public class mathematicsLibrary {
      * @param width
      * @return Area
      */
-    public double rectangularArea(double length, double width) {
+    public static double rectangularArea(double length, double width) {
         return length * width;
     }
 
@@ -88,7 +90,7 @@ public class mathematicsLibrary {
      * @param height
      * @return area
      */
-    public double triangularWidth(double base, double height) {
+    public static double triangularWidth(double base, double height) {
         return base * height * .5;
     }
 
@@ -99,12 +101,12 @@ public class mathematicsLibrary {
      *
      * @return missingSide
      */
-    public double pyThagSide(double hypotenuse, double side1) {
+    public static double pyThagSide(double hypotenuse, double side1) {
         double side12 = hypotenuse;
         double side2 = side1;
 
-       this.makeSquare(side12);
-        this.makeSquare(side2);
+       mathematicsLibrary.makeSquare(side12);
+        mathematicsLibrary.makeSquare(side2);
 
         side12 -= side1;
         return Math.sqrt(side12);
@@ -118,12 +120,12 @@ public class mathematicsLibrary {
      * @param side2
      * @return hypotenuse
      */
-    public double pyThagHypotenuse(double side1, double side2) {
+    public static double pyThagHypotenuse(double side1, double side2) {
         double hypotenuse = side1;
         double side12 = side2;
 
-        this.makeSquare(hypotenuse);
-        this.makeSquare(side12);
+        mathematicsLibrary.makeSquare(hypotenuse);
+        mathematicsLibrary.makeSquare(side12);
 
         return Math.sqrt(side12 + side2);
     }

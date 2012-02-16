@@ -1,6 +1,8 @@
+package libsubject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -8,7 +10,7 @@ import java.util.logging.Logger;
 
 /**
  * Provides tools that help with editing text. The focus revolves around
- *  scrambling and reversal of text.
+ * scrambling and reversal of text.
  *
  * @author nate
  */
@@ -63,15 +65,7 @@ public abstract class LibText {
      * @return reversed text
      */
     public static String reverse(File textFile) {
-        String tempText = LibText.extractFileText(textFile);
-        String reversed = "";
-        char[] characters = tempText.toCharArray();
-
-        for (int index = (characters.length - 1); index > -1; index--) {
-            reversed += characters[index];
-        }
-
-        return reversed;
+        return LibText.reverse(LibText.extractFileText(textFile));
     }
 
     /**
@@ -83,10 +77,8 @@ public abstract class LibText {
      */
     public static char[] reverse(char[] charArray) {
         char[] returnArray = new char[charArray.length];
-        String reversed = "";
-        for (int index = (charArray.length - 1); index > -1; index--) {
-            reversed += charArray[index];///////////////////////////////////////////////////////CONDENSE ARRAY
-        }
+        String reversed = LibText.condenseArray(charArray);
+
         for (int index = 0; index < reversed.length(); index++) {
             returnArray[index] = reversed.charAt(index);
         }
@@ -375,5 +367,60 @@ public abstract class LibText {
             }
         }
         return numberOf;
+    }
+
+    /**
+     * This will write the text to the file. No extra characters will be added,
+     * not even a carriage return. Make sure you have that handled in the String
+     * before you call this method. WARNING: This will erase the contents of the
+     * file.
+     *
+     * @throws FileNotFoundException
+     * @param filepath to save to.
+     * @param String to write to the file.
+     */
+    public static void writeTofile(String filepath, String toWrite) throws FileNotFoundException {
+        File writeTo = new File(filepath);
+        try (PrintWriter outputStream = new PrintWriter(writeTo)) {
+            outputStream.write(toWrite);
+        }
+    }
+
+    /**
+     * Splits the String only before the specified index.
+     *
+     * @param the String to split
+     * @param Where to end the splitting
+     * @param What to split on
+     * @return array of split Strings.
+     */
+    public static String[] splitBefore(String toSplit, int index, String regex) {
+        return toSplit.substring(0, index).split(regex);
+    }
+
+    /**
+     * Splits the String into sections after the given index.
+     *
+     * @param the String to split
+     * @param where to begin the splitting.
+     * @param what expression to split on.
+     * @return array of split Strings
+     */
+    public static String[] splitAfter(String toSplit, int index, String regex) {
+        return toSplit.substring(index).split(regex);
+    }
+
+    /**
+     * Splits the specified String in between the two indexes and returns the
+     * Strings that have been split.
+     *
+     * @param the String to split
+     * @param first splitting point
+     * @param second splitting point
+     * @param what expression to split on
+     * @return array of split Strings.
+     */
+    public static String[] splitBetween(String toSplit, int index, int secondIndex, String regex) {
+        return toSplit.substring(index, secondIndex).split(regex);
     }
 }
