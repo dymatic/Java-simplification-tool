@@ -13,4 +13,5 @@ The mathematic library didn't make it nearly as far as the text library has at t
 I hope to take the project in a new direction, adding some tools for really simple tasks that will just shorten code. I know it makes code harder to read if it uses the tools, so I will be trying my best in naming the methods in a self-describing way.
 
 #Using the tool
-Just import the code to your project and start using it. All of the Text methods are static and all of the mathematics ones are not, I will be doing my best to change that inconsistancy.
+Just import the code to your project and start using it. All of the methods are static, so you need to use Classname.method() rather than instantination.
+
