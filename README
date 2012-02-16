@@ -1,0 +1,16 @@
+This is my first project on Github and I'm relatively new to Git as a whole, so I apologize for any mistakes or convention breakings.
+
+#TABLE OF CONTENTS:
+  1) History
+  2) Future plans
+  3) Using the tool
+
+#History
+This tool originated as a standard deviation calculator. (And as a quick sidenote, I was using the wrong formula.)
+The mathematic library didn't make it nearly as far as the text library has at the time of writing this README. The text library started off as a practical set of methods for extracting and handling text, but eventaully became focused around text scrambling.
+
+#Future plans
+I hope to take the project in a new direction, adding some tools for really simple tasks that will just shorten code. I know it makes code harder to read if it uses the tools, so I will be trying my best in naming the methods in a self-describing way.
+
+#Using the tool
+Just import the code to your project and start using it. All of the Text methods are static and all of the mathematics ones are not, I will be doing my best to change that inconsistancy.
