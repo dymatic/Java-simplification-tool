@@ -374,6 +374,8 @@ public abstract class LibText {
      * not even a carriage return. Make sure you have that handled in the String
      * before you call this method. WARNING: This will erase the contents of the
      * file.
+     * All this method does is use PrintWriter to write to the file, and then
+     * close the connection.
      *
      * @throws FileNotFoundException
      * @param filepath to save to.
@@ -383,6 +385,7 @@ public abstract class LibText {
         File writeTo = new File(filepath);
         try (PrintWriter outputStream = new PrintWriter(writeTo)) {
             outputStream.write(toWrite);
+            outputStream.close();
         }
     }
 
