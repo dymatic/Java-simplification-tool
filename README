@@ -1,16 +1,43 @@
 #TABLE OF CONTENTS:
   1) History
+
   2) Future plans
+
   3) Using the tool
 
+  4) License
+
+  5) Credits
+    a)Links
+    b)People
+
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #History
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 This tool originated as a standard deviation calculator. (And as a quick side note, I was using the wrong formula.)
-LibMath didn't make it nearly as far as the text library has at the time of writing this README. The text library started off as a practical set of methods for extracting and handling text, but eventually became focused around text scrambling. The LibVarious class began after LibMath and LibText
-
+LibMath was originally called MathematicsResourceLibrary, a real pain to type out since it has static methods. The TextResourceLibrary, the next class in LibSubject,
+was added before the renaming. 
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #Future plans
-I hope to take the project in a new direction, adding some tools for really simple tasks that will just shorten code. I know it makes code harder to read if it uses the tools, so I will be trying my best in naming the methods in a self-describing way.
-
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
+I hope to make more of the javadoc agree, rename some of the methods, and possibly create a program that will utilize the various methods.
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #Using the tool
-Just import the code to your project and go. The methods are all static, so you'll have to use the class name rather than instantiating.
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
+Just import the code to your project and go. The methods are all static, so you'll have to use the class name rather than instantiating. The files do
+not contain a main class, but read #Future plans, because a future update may bring an executable version of these files.
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
+#License
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
+These files are provided to you through the GNU General Public License Version 2.
 
+http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
+#Credits
+⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
+##Links
+http://library.thinkquest.org/20991/geo/solids.html - I used this for reference on some of the geographical methods in LibMath
 
+http://www.java2s.com/Tutorial/Java/0120__Development/Javasystemproperties.htm - I was clueless about property accessors before I found this page. Huge thanks to whoever wrote it.
+##People
+At the time of writing I am the only person who has directly worked on the code of this project or any of its attachments, including this README.

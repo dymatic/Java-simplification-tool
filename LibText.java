@@ -9,13 +9,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Provides tools that help with editing text. The focus revolves around
- * scrambling and reversal of text.
+ * Provides tools that help work with text. The focus revolves around
+ * scrambling and reversal of text, as well as making the simplest text 
+ * operations easier.
  *
- * @author nate
+ * @author Norton
  */
 public abstract class LibText {
-
+    /**
+     * Temporary variable.
+     */
+private static String temporary = "";
     /**
      * Generates a random number.
      */
@@ -28,17 +32,17 @@ public abstract class LibText {
      * @return The text from the file.
      */
     public static String extractFileText(File textFile) {
-        String returnText = "";
+        temporary="";
         try {
 
             Scanner inputStream = new Scanner(textFile);
             do {
-                returnText += inputStream.nextLine() + "\n";
+                temporary += inputStream.nextLine() + "\n";
             } while (inputStream.hasNextLine());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LibText.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return returnText;
+        return temporary;
     }
 
     /**
@@ -48,14 +52,14 @@ public abstract class LibText {
      * @return The reversed text.
      */
     public static String reverse(String text) {
-        String reversed = "";
+       temporary = "";
         char[] characters = text.toCharArray();
 
         for (int index = (characters.length - 1); index > -1; index--) {
-            reversed += characters[index];
+            temporary += characters[index];
         }
 
-        return reversed;
+        return temporary;
     }
 
     /**
@@ -77,10 +81,11 @@ public abstract class LibText {
      */
     public static char[] reverse(char[] charArray) {
         char[] returnArray = new char[charArray.length];
-        String reversed = LibText.condenseArray(charArray);
+        temporary = "";
+       temporary = LibText.condenseArray(charArray);
 
-        for (int index = 0; index < reversed.length(); index++) {
-            returnArray[index] = reversed.charAt(index);
+        for (int index = 0; index < temporary.length(); index++) {
+            returnArray[index] = temporary.charAt(index);
         }
         return returnArray;
     }
@@ -118,9 +123,8 @@ public abstract class LibText {
      */
     public static String predictableScramble(String toScramble) {
         char[] content = toScramble.toCharArray();
-        char temp;
+           temporary="";
         int secondIndex;
-        String finalMessage = "";
 
         for (int counter = 0; counter < 1000; counter++)//Scambled 100 times
         {
@@ -131,9 +135,9 @@ public abstract class LibText {
             for (int index = 0; index < toScramble.length(); index++) //Does the actual scrambling
             {
                 content = LibText.reverse(content);
-                temp = content[index];
+                temporary = String.valueOf(content[index]);
                 content[index] = content[secondIndex];
-                content[secondIndex] = temp;
+                content[secondIndex] = temporary.charAt(0);
             }
         }
         return LibText.condenseArray(content);
@@ -147,7 +151,7 @@ public abstract class LibText {
      * @return the scrambled String.
      */
     public static String unpredictableScrambleIgnoreWhitespace(String toScramble) {
-        char temporary;
+        temporary="";
         char[] charArray = toScramble.toCharArray();
         int placeHolder0;
         int placeHolder1;
@@ -159,9 +163,9 @@ public abstract class LibText {
             } while (placeHolder0 == placeHolder1 || charArray[placeHolder0] == ' '
                     || charArray[placeHolder1] == ' ');
 
-            temporary = charArray[placeHolder0];
+            temporary = String.valueOf(charArray[placeHolder0]);
             charArray[placeHolder0] = charArray[placeHolder1];
-            charArray[placeHolder1] = temporary;
+            charArray[placeHolder1] = temporary.charAt(0);
         }
         return LibText.condenseArray(charArray);
     }
@@ -185,7 +189,7 @@ public abstract class LibText {
      * @return the scrambled character array.
      */
     public static char[] unpredictableScrambleIgnoreWhitespace(char[] toScramble) {
-        char temporary;
+        temporary="";
         char[] charArray = toScramble;
         int placeHolder0;
         int placeHolder1;
@@ -197,9 +201,9 @@ public abstract class LibText {
             } while (placeHolder0 == placeHolder1 || charArray[placeHolder0] == ' '
                     || charArray[placeHolder1] == ' ');
 
-            temporary = charArray[placeHolder0];
+            temporary = String.valueOf(charArray[placeHolder0]);
             charArray[placeHolder0] = charArray[placeHolder1];
-            charArray[placeHolder1] = temporary;
+            charArray[placeHolder1] = temporary.charAt(0);
         }
         return charArray;
     }
@@ -213,7 +217,7 @@ public abstract class LibText {
      * @return The unpredictably scrambled text.
      */
     public static String unpredictableScramble(String toScramble) {
-        char temporary;
+        temporary="";
         char[] charArray = toScramble.toCharArray();
         int placeHolder0;
         int placeHolder1;
@@ -224,9 +228,9 @@ public abstract class LibText {
                 placeHolder1 = rand.nextInt(toScramble.length());
             } while (placeHolder0 == placeHolder1);
 
-            temporary = charArray[placeHolder0];
+            temporary = String.valueOf(charArray[placeHolder0]);
             charArray[placeHolder0] = charArray[placeHolder1];
-            charArray[placeHolder1] = temporary;
+            charArray[placeHolder1] = temporary.charAt(0);
         }
         return LibText.condenseArray(charArray);
     }
@@ -240,7 +244,7 @@ public abstract class LibText {
      * @return The scrambled character array.
      */
     public static char[] unpredictableScramble(char[] toScramble) {
-        char temporary;
+        temporary="";
         char[] charArray = toScramble;
         int placeHolder0;
         int placeHolder1;
@@ -251,9 +255,9 @@ public abstract class LibText {
                 placeHolder1 = rand.nextInt(toScramble.length);
             } while (placeHolder0 == placeHolder1);
 
-            temporary = charArray[placeHolder0];
+            temporary = String.valueOf(charArray[placeHolder0]);
             charArray[placeHolder0] = charArray[placeHolder1];
-            charArray[placeHolder1] = temporary;
+            charArray[placeHolder1] = temporary.charAt(0);
         }
         return charArray;
     }
@@ -278,9 +282,8 @@ public abstract class LibText {
      */
     public static String unscramble(String scrambled) {
         char[] content = LibText.reverse(scrambled).toCharArray();
-        char temp;
+        temporary="";
         int secondIndex;
-        String finalMessage = "";
 
         for (int counter = 0; counter < 1000; counter++)//Scambled 100 times
         {
@@ -291,9 +294,9 @@ public abstract class LibText {
             for (int index = content.length - 1; index > -1; index--) //Does the actual unsrambling.
             {
                 content = LibText.reverse(content);
-                temp = content[index];
+                temporary = String.valueOf(content[index]);
                 content[index] = content[secondIndex];
-                content[secondIndex] = temp;
+                content[secondIndex] = temporary.charAt(0);
             }
         }
         return LibText.reverse(LibText.condenseArray(content));
@@ -328,14 +331,14 @@ public abstract class LibText {
      * @return
      */
     public static String unpredictableScrambleNoMigration(String toScramble) {
-        String sentence = "";
+        temporary = "";
         String[] words = toScramble.split(" ");
 
         for (int index = 0; index < words.length; index++) {
-            sentence += LibText.unpredictableScramble(words[index]) + " ";
+            temporary += LibText.unpredictableScramble(words[index]) + " ";
         }
 
-        return sentence;
+        return temporary;
     }
 
     /**
@@ -345,12 +348,12 @@ public abstract class LibText {
      * @return A string representative of the character array.
      */
     public static String condenseArray(char[] toCondense) {
-        String returnString = "";
+        temporary="";
 
         for (int index = 0; index < toCondense.length; index++) {
-            returnString += toCondense[index];
+            temporary += toCondense[index];
         }
-        return returnString;
+        return temporary;
     }
 
     /**
@@ -425,5 +428,5 @@ public abstract class LibText {
      */
     public static String[] splitBetween(String toSplit, int index, int secondIndex, String regex) {
         return toSplit.substring(index, secondIndex).split(regex);
-    } 
+    }
 }
