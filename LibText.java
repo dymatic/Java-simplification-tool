@@ -425,5 +425,5 @@ public abstract class LibText {
      */
     public static String[] splitBetween(String toSplit, int index, int secondIndex, String regex) {
         return toSplit.substring(index, secondIndex).split(regex);
-    }
+    } 
 }
