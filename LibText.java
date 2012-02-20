@@ -91,59 +91,6 @@ private static String temporary = "";
     }
 
     /**
-     * Predictably scrambles the content in the specified file, not the file
-     * itself.
-     *
-     * @param the file to Scramble
-     * @return the scrambled content of the file.
-     *
-     */
-    public static String predictableScramble(File toScramble) {
-        return LibText.predictableScramble(LibText.extractFileText(toScramble));
-    }
-
-    /**
-     * Unscrambles the text located in the file. The file should not be
-     * scrambled unless you reassigned the scrambled String to the file.
-     *
-     * @param The file that contains the text
-     * @return The unscrambled content from the file.
-     *
-     */
-    public static String unscramble(File toUnscramble) {
-        return LibText.unscramble(LibText.extractFileText(toUnscramble));
-    }
-
-    /**
-     * Scrambles a set of data in a predictable fashion. This can be
-     * unscrambled.
-     *
-     * @param toScramble
-     * @return scrambled text
-     */
-    public static String predictableScramble(String toScramble) {
-        char[] content = toScramble.toCharArray();
-           temporary="";
-        int secondIndex;
-
-        for (int counter = 0; counter < 1000; counter++)//Scambled 100 times
-        {
-            secondIndex = 2;
-            if (secondIndex > content.length) {
-                secondIndex = 0;
-            }
-            for (int index = 0; index < toScramble.length(); index++) //Does the actual scrambling
-            {
-                content = LibText.reverse(content);
-                temporary = String.valueOf(content[index]);
-                content[index] = content[secondIndex];
-                content[secondIndex] = temporary.charAt(0);
-            }
-        }
-        return LibText.condenseArray(content);
-    }
-
-    /**
      * In addition to probably being the longest method name in all existence,
      * this will unpredictably scrambles words but skip over whitespace.
      *
