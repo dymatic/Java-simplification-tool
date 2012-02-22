@@ -306,7 +306,8 @@ public abstract class LibText {
      * Predictably encrypts the text using the encrypter key. Unlike most
      * encryption, a password is not used, but rather a randomly generated set
      * of numbers called an encrypter key. An encrypter key must be generated
-     * and used in this method in order for the method to work.
+     * and used in this method in order for the method to work. This will turn
+     * capital letters into lower case ones
      *
      * @param the text to encrypt
      * @param the encrypter key. To generate a new key, use generateEncrypterKey
@@ -320,8 +321,8 @@ public abstract class LibText {
                 indexes[index] = fileReader.nextShort();
             }
         }
-        String tempText=toScramble.replace('z', '9');
-        tempText.replace('Z', '1');
+        String tempText=toScramble.replace('z', '9').toLowerCase();
+
         
         char[] text = tempText.toCharArray();
         String oddAlphabet = "";
@@ -369,23 +370,29 @@ public abstract class LibText {
                 oddAlphabet += String.valueOf(LibText.getLetterAt(indexes[index]));
             }
             for (int index = 0; index < text.length; index++) {
-                System.out.println(text[index]);
-
+               
+                if(Character.isAlphabetic(text[index])&&Character.isLowerCase(text[index]))
+                {
                 if(text[index]!='1'&&text[index]!='9') {
                 if (!Character.isUpperCase(text[index])) {
                     text[index] = normalAlphabet.charAt(oddAlphabet.indexOf(text[index]));
-                } else {
-                    text[index] = Character.toUpperCase(normalAlphabet.charAt(oddAlphabet.indexOf(Character.toLowerCase(text[index]))));
+                } 
                 }
-            } else
+            } else if(Character.isDigit(text[index]))
                 {
                     if(text[index]=='9')
                         text[index]='z';
-                    else
+                    else if(text[index]=='1')
                         text[index]='Z';
-                }
+                    
+                } else if(Character.isUpperCase(text[index]))
+                {
+                    System.out.println("Entered super secret area DEBUG");
+                    text[index]=Character.toLowerCase(text[index]);
+                    text[index] = normalAlphabet.charAt(oddAlphabet.indexOf(text[index])); ////////////////////NOT QUITE WORKING
+                    text[index]=Character.toUpperCase(text[index]);
             }
-           
+            }
 
 
             return LibText.condenseArray(text);
@@ -401,7 +408,6 @@ public abstract class LibText {
      * @param The file path.
      */
     public static void generateEncrypterKey(String filepath) throws FileNotFoundException {
-        File scramblerFile = new File(filepath);
         short[] data = new short[26];
         short randomNumber;
         short secondRandomNumber;
@@ -484,4 +490,14 @@ public abstract class LibText {
     public static String[] splitBetween(String toSplit, int index, int secondIndex, String regex) {
         return toSplit.substring(index, secondIndex).split(regex);
     }
-}
+    public static void main(String[] args) throws FileNotFoundException
+    {
+        LibText.generateEncrypterKey("/home/nate/key");
+        File filius = new File("/home/nate/key");
+        System.out.println("Encrypted phrase: "+LibText.encrypt("Basic", filius));
+        System.out.println("Unencrypted: "+LibText.unencrypt(LibText.encrypt("BzZzZa,,,sic", filius), filius));
+    }
+} /*
+ * Status update: You had to leave for school, but you are having a problem with capitals in the unencrypter. First, look at your encryption algorithm to determine where you're going
+ * wrong. If yo can't, just as Y!A.
+ */
