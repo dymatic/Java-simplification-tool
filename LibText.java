@@ -9,17 +9,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Provides tools that help work with text. The focus revolves around
- * scrambling and reversal of text, as well as making the simplest text 
- * operations easier.
+ * Provides tools that help work with text. The focus revolves around scrambling
+ * and reversal of text, as well as making the simplest text operations easier.
  *
  * @author Norton
  */
 public abstract class LibText {
+
     /**
      * Temporary variable.
      */
-private static String temporary = "";
+    private static String temporary = "";
     /**
      * Generates a random number.
      */
@@ -32,7 +32,7 @@ private static String temporary = "";
      * @return The text from the file.
      */
     public static String extractFileText(File textFile) {
-        temporary="";
+        temporary = "";
         try {
 
             Scanner inputStream = new Scanner(textFile);
@@ -52,7 +52,7 @@ private static String temporary = "";
      * @return The reversed text.
      */
     public static String reverse(String text) {
-       temporary = "";
+        temporary = "";
         char[] characters = text.toCharArray();
 
         for (int index = (characters.length - 1); index > -1; index--) {
@@ -82,7 +82,7 @@ private static String temporary = "";
     public static char[] reverse(char[] charArray) {
         char[] returnArray = new char[charArray.length];
         temporary = "";
-       temporary = LibText.condenseArray(charArray);
+        temporary = LibText.condenseArray(charArray);
 
         for (int index = 0; index < temporary.length(); index++) {
             returnArray[index] = temporary.charAt(index);
@@ -98,7 +98,7 @@ private static String temporary = "";
      * @return the scrambled String.
      */
     public static String unpredictableScrambleIgnoreWhitespace(String toScramble) {
-        temporary="";
+        temporary = "";
         char[] charArray = toScramble.toCharArray();
         int placeHolder0;
         int placeHolder1;
@@ -136,7 +136,7 @@ private static String temporary = "";
      * @return the scrambled character array.
      */
     public static char[] unpredictableScrambleIgnoreWhitespace(char[] toScramble) {
-        temporary="";
+        temporary = "";
         char[] charArray = toScramble;
         int placeHolder0;
         int placeHolder1;
@@ -164,7 +164,7 @@ private static String temporary = "";
      * @return The unpredictably scrambled text.
      */
     public static String unpredictableScramble(String toScramble) {
-        temporary="";
+        temporary = "";
         char[] charArray = toScramble.toCharArray();
         int placeHolder0;
         int placeHolder1;
@@ -191,7 +191,7 @@ private static String temporary = "";
      * @return The scrambled character array.
      */
     public static char[] unpredictableScramble(char[] toScramble) {
-        temporary="";
+        temporary = "";
         char[] charArray = toScramble;
         int placeHolder0;
         int placeHolder1;
@@ -214,39 +214,11 @@ private static String temporary = "";
      * also scrambled. Text scrambled in this fashion cannot be later
      * unscrambled through automated means.
      *
-     * @param toUnscramble
-     * @return
+     * @param The file to scramble
+     * @return The text of the file taht has been scrambled.
      */
     public static String unpredictableScramble(File toUnscramble) {
         return LibText.unpredictableScramble(LibText.extractFileText(toUnscramble));
-    }
-
-    /**
-     * Unscrambles text scrambled with the predictable scrambler.
-     *
-     * @param scrambled
-     * @return unscrambled.
-     */
-    public static String unscramble(String scrambled) {
-        char[] content = LibText.reverse(scrambled).toCharArray();
-        temporary="";
-        int secondIndex;
-
-        for (int counter = 0; counter < 1000; counter++)//Scambled 100 times
-        {
-            secondIndex = 2;
-            if (secondIndex > content.length) {
-                secondIndex = 0;
-            }
-            for (int index = content.length - 1; index > -1; index--) //Does the actual unsrambling.
-            {
-                content = LibText.reverse(content);
-                temporary = String.valueOf(content[index]);
-                content[index] = content[secondIndex];
-                content[secondIndex] = temporary.charAt(0);
-            }
-        }
-        return LibText.reverse(LibText.condenseArray(content));
     }
 
     /**
@@ -255,8 +227,8 @@ private static String temporary = "";
      * @return the position of the letter, 0 is A and 25 is Z
      */
     public static short letterIndex(char letter) {
-        String alphabet = "abcdefghijklmnopqrstuvwxyz";
-        String capAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String alphabet = " abcdefghijklmnopqrstuvwxyz";
+        String capAlphabet = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         if (alphabet.indexOf(letter) != -1) //IndexOf returns -1 if the character is not found.
         {
@@ -295,7 +267,7 @@ private static String temporary = "";
      * @return A string representative of the character array.
      */
     public static String condenseArray(char[] toCondense) {
-        temporary="";
+        temporary = "";
 
         for (int index = 0; index < toCondense.length; index++) {
             temporary += toCondense[index];
@@ -320,12 +292,148 @@ private static String temporary = "";
     }
 
     /**
+     * Gets the letter at the alphabetical index. Note that indexes start at 0.
+     *
+     * @param the alphabetical index
+     * @return the letter at the index
+     */
+    public static char getLetterAt(short index) {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        return alphabet.charAt(index);
+    }
+
+    /**
+     * Predictably encrypts the text using the encrypter key. Unlike most
+     * encryption, a password is not used, but rather a randomly generated set
+     * of numbers called an encrypter key. An encrypter key must be generated
+     * and used in this method in order for the method to work.
+     *
+     * @param the text to encrypt
+     * @param the encrypter key. To generate a new key, use generateEncrypterKey
+     * @return the encrypted text text
+     */
+    public static String encrypt(String toScramble, File key) throws FileNotFoundException {
+        short[] indexes;
+        try (Scanner fileReader = new Scanner(key)) {
+            indexes = new short[26];
+            for (int index = 0; fileReader.hasNextShort(); index++) {
+                indexes[index] = fileReader.nextShort();
+            }
+        }
+        String tempText=toScramble.replace('z', '9');
+        tempText.replace('Z', '1');
+        
+        char[] text = tempText.toCharArray();
+        String oddAlphabet = "";
+
+        for (int index = 0; index < indexes.length; index++) {
+
+            oddAlphabet += String.valueOf(LibText.getLetterAt(indexes[index]));
+        }
+
+        for (int index = 0; index < text.length; index++) //Core encrypter
+        {
+            if (!Character.isUpperCase(text[index])) {
+                if (LibText.letterIndex(text[index]) != -1 && LibText.letterIndex(text[index])<26) {
+                    text[index] = oddAlphabet.charAt(LibText.letterIndex(text[index]));
+                }
+            } else if(LibText.letterIndex(text[index])<26) {
+                text[index] = Character.toUpperCase(oddAlphabet.charAt(index));
+            }else {
+                text[index] = '9';
+            }
+        }
+        return LibText.condenseArray(text);
+    }
+
+    /**
+     * Unencrypts text that has been encrypted with the specified key.
+     * Generating a new key and using it will almost never work.
+     *
+     * @param The text to unencrypt
+     * @param the encrypter key
+     * @return the unencrypted text
+     */
+    public static String unencrypt(String toUnencrypt, File key) throws FileNotFoundException {
+        short[] indexes;
+        try (Scanner fileReader = new Scanner(key)) {
+            indexes = new short[26];
+            for (int index = 0; fileReader.hasNextShort(); index++) {
+                indexes[index] = fileReader.nextShort();
+            }//loop
+            char[] text = toUnencrypt.toCharArray();
+            String normalAlphabet = " abcdefghijklmnopqrstuvwxyz";
+            String oddAlphabet = "";
+            for (int index = 0; index < indexes.length; index++) {
+
+                oddAlphabet += String.valueOf(LibText.getLetterAt(indexes[index]));
+            }
+            for (int index = 0; index < text.length; index++) {
+                System.out.println(text[index]);
+
+                if(text[index]!='1'&&text[index]!='9') {
+                if (!Character.isUpperCase(text[index])) {
+                    text[index] = normalAlphabet.charAt(oddAlphabet.indexOf(text[index]));
+                } else {
+                    text[index] = Character.toUpperCase(normalAlphabet.charAt(oddAlphabet.indexOf(Character.toLowerCase(text[index]))));
+                }
+            } else
+                {
+                    if(text[index]=='9')
+                        text[index]='z';
+                    else
+                        text[index]='Z';
+                }
+            }
+           
+
+
+            return LibText.condenseArray(text);
+        }//try
+    }//method
+
+    /**
+     * Creates a new encyption key at the specified filepath. encryption keys
+     * are used in predictable encrypting. Each of the numbers represents a
+     * letter in the alphabet at that index. Encrypter keys consist of random
+     * numbers, 0 to 25.
+     *
+     * @param The file path.
+     */
+    public static void generateEncrypterKey(String filepath) throws FileNotFoundException {
+        File scramblerFile = new File(filepath);
+        short[] data = new short[26];
+        short randomNumber;
+        short secondRandomNumber;
+        short numeralTemp;
+        String output = " ";
+        for (int index = 0; index < 26; index++) {
+            data[index] = (short) index;
+        }
+
+        for (int secondIndex = 0; secondIndex < 1000; secondIndex++) //Randomized 1000 times
+        {
+            do {
+                randomNumber = (short) rand.nextInt(26);
+                secondRandomNumber = (short) rand.nextInt(26);
+            } while (randomNumber == secondRandomNumber);
+
+            numeralTemp = data[randomNumber];
+            data[randomNumber] = data[secondRandomNumber];
+            data[secondRandomNumber] = numeralTemp;
+        }
+        for (int index = 0; index < data.length; index++) {
+            output += data[index] + " ";
+        }
+        LibText.writeTofile(filepath, output);
+    }
+
+    /**
      * This will write the text to the file. No extra characters will be added,
      * not even a carriage return. Make sure you have that handled in the String
      * before you call this method. WARNING: This will erase the contents of the
-     * file.
-     * All this method does is use PrintWriter to write to the file, and then
-     * close the connection.
+     * file. All this method does is use PrintWriter to write to the file, and
+     * then close the connection.
      *
      * @throws FileNotFoundException
      * @param filepath to save to.
