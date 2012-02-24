@@ -321,9 +321,9 @@ public abstract class LibText {
                 indexes[index] = fileReader.nextShort();
             }
         }
-        String tempText=toScramble.replace('z', '9').toLowerCase();
+        String tempText = toScramble.replace('z', '9').toLowerCase();
 
-        
+
         char[] text = tempText.toCharArray();
         String oddAlphabet = "";
 
@@ -335,12 +335,12 @@ public abstract class LibText {
         for (int index = 0; index < text.length; index++) //Core encrypter
         {
             if (!Character.isUpperCase(text[index])) {
-                if (LibText.letterIndex(text[index]) != -1 && LibText.letterIndex(text[index])<26) {
+                if (LibText.letterIndex(text[index]) != -1 && LibText.letterIndex(text[index]) < 26) {
                     text[index] = oddAlphabet.charAt(LibText.letterIndex(text[index]));
                 }
-            } else if(LibText.letterIndex(text[index])<26) {
+            } else if (LibText.letterIndex(text[index]) < 26) {
                 text[index] = Character.toUpperCase(oddAlphabet.charAt(index));
-            }else {
+            } else {
                 text[index] = '9';
             }
         }
@@ -370,28 +370,26 @@ public abstract class LibText {
                 oddAlphabet += String.valueOf(LibText.getLetterAt(indexes[index]));
             }
             for (int index = 0; index < text.length; index++) {
-               
-                if(Character.isAlphabetic(text[index])&&Character.isLowerCase(text[index]))
-                {
-                if(text[index]!='1'&&text[index]!='9') {
-                if (!Character.isUpperCase(text[index])) {
-                    text[index] = normalAlphabet.charAt(oddAlphabet.indexOf(text[index]));
-                } 
+
+                if (Character.isAlphabetic(text[index]) && Character.isLowerCase(text[index])) {
+                    if (text[index] != '1' && text[index] != '9') {
+                        if (!Character.isUpperCase(text[index])) {
+                            text[index] = normalAlphabet.charAt(oddAlphabet.indexOf(text[index]));
+                        }
+                    }
+                } else if (Character.isDigit(text[index])) {
+                    if (text[index] == '9') {
+                        text[index] = 'z';
+                    } else if (text[index] == '1') {
+                        text[index] = 'Z';
+                    }
+
+                } else if (Character.isUpperCase(text[index])) {
+
+                    text[index] = Character.toLowerCase(text[index]);
+                    text[index] = normalAlphabet.charAt(oddAlphabet.indexOf(text[index])); //Not working yet
+                    text[index] = Character.toUpperCase(text[index]);
                 }
-            } else if(Character.isDigit(text[index]))
-                {
-                    if(text[index]=='9')
-                        text[index]='z';
-                    else if(text[index]=='1')
-                        text[index]='Z';
-                    
-                } else if(Character.isUpperCase(text[index]))
-                {
-                    System.out.println("Entered super secret area DEBUG");
-                    text[index]=Character.toLowerCase(text[index]);
-                    text[index] = normalAlphabet.charAt(oddAlphabet.indexOf(text[index])); ////////////////////NOT QUITE WORKING
-                    text[index]=Character.toUpperCase(text[index]);
-            }
             }
 
 
@@ -490,14 +488,4 @@ public abstract class LibText {
     public static String[] splitBetween(String toSplit, int index, int secondIndex, String regex) {
         return toSplit.substring(index, secondIndex).split(regex);
     }
-    public static void main(String[] args) throws FileNotFoundException
-    {
-        LibText.generateEncrypterKey("/home/nate/key");
-        File filius = new File("/home/nate/key");
-        System.out.println("Encrypted phrase: "+LibText.encrypt("Basic", filius));
-        System.out.println("Unencrypted: "+LibText.unencrypt(LibText.encrypt("BzZzZa,,,sic", filius), filius));
-    }
-} /*
- * Status update: You had to leave for school, but you are having a problem with capitals in the unencrypter. First, look at your encryption algorithm to determine where you're going
- * wrong. If yo can't, just as Y!A.
- */
+}

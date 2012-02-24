@@ -15,12 +15,14 @@
 #History
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 This tool originated as a standard deviation calculator. (And as a quick side note, I was using the wrong formula.)
-LibMath was originally called MathematicsResourceLibrary, a real pain to type out since it has static methods. The TextResourceLibrary, the next class in LibSubject,
-was added before the renaming. 
+LibMath was originally called MathematicsResourceLibrary, a real pain to type out since it has only static methods. The TextResourceLibrary, the next class in LibSubject,
+was added before the renaming. LibVarious came next, as I realized that I had some methods that didn't fall under text or mathematics.
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #Future plans
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
-I hope to make more of the javadoc agree, rename some of the methods, and possibly create a program that will utilize the various methods.
+I want to get some more advanced methods in LibVarious. Right now all I have are property accessors and a few odds and ends. Programming structures I find myself using over and over
+will be the primary thing added to LibVarious. An executable version (text AND graphical) are planned but haven't even started being implemented. They probably won't be until I run
+out of ideas for things to add to all of the classes.
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #Using the tool
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
@@ -29,7 +31,7 @@ not contain a main class, but read #Future plans, because a future update may br
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #License
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
-These files are provided to you through the GNU General Public License Version 2.
+These files are provided to you through the GNU General Public License Version 2. "GPL 2 is freedom. GPL 3 is a crusade."
 
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉

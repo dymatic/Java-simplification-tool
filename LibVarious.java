@@ -1,12 +1,12 @@
 package libsubject;
 
 import java.io.IOException;
-
+import java.util.Calendar;
 /**
  * Contains the "other" stuff that LibMath and LibText didn't cover. Computer
  * related methods will be going in here.
  *
- * @author nate
+ * @author Norton
  */
 public abstract class LibVarious {
     /*
@@ -281,4 +281,10 @@ public abstract class LibVarious {
     public static void execute(String exec) throws IOException {
         Runtime.getRuntime().exec(exec);
     }
+    public static String getTime()
+    {
+        return Calendar.getInstance().getTime().toString();
+    }
+    
+   
 }//End of class

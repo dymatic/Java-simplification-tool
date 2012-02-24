@@ -235,7 +235,7 @@ public abstract class LibMath {
     }
 
     /**
-     * Returns the density of the object. Density is equal to the mass times the
+     * Returns the density of the object. Density is equal to the mass divided by
      * volume.
      *
      * @param mass of the object
@@ -243,6 +243,24 @@ public abstract class LibMath {
      * @return density of the object
      */
     public static double densityOf(double mass, double volume) {
-        return mass * volume;
+        return mass / volume;
+    }
+    /**
+     * Converts the celcius temperature to fahrenheit
+     * @param The temperature in celcius
+     * @return The temperature in fahrenheit
+     */
+    public static double convertCelciusToFahrenheit(double celcius)
+    {
+        return celcius*(9/5)+32;
+    }
+    /**
+     * Converts the fahrenheit temperature to celcius.
+     * @param the fahrenheit temperature
+     * @return the celcius temperature
+     */
+    public static double convertFahrenheitToCelcius(double fahrenheit)
+    {
+        return fahrenheit*(5/9)-32;
     }
 }
