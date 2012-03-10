@@ -1,4 +1,4 @@
-package libsubject;
+package libsubjectmobile;
 
 /**
  * This is a collection of formulas for dealing with numbers, simple operations,
@@ -235,8 +235,8 @@ public abstract class LibMath {
     }
 
     /**
-     * Returns the density of the object. Density is equal to the mass divided by
-     * volume.
+     * Returns the density of the object. Density is equal to the mass divided
+     * by volume.
      *
      * @param mass of the object
      * @param volume of the object
@@ -245,22 +245,44 @@ public abstract class LibMath {
     public static double densityOf(double mass, double volume) {
         return mass / volume;
     }
+
     /**
      * Converts the celcius temperature to fahrenheit
+     *
      * @param The temperature in celcius
      * @return The temperature in fahrenheit
      */
-    public static double convertCelciusToFahrenheit(double celcius)
-    {
-        return celcius*(9/5)+32;
+    public static double convertCelciusToFahrenheit(double celcius) {
+        return celcius * (9 / 5) + 32;
     }
+
     /**
      * Converts the fahrenheit temperature to celcius.
+     *
      * @param the fahrenheit temperature
      * @return the celcius temperature
      */
-    public static double convertFahrenheitToCelcius(double fahrenheit)
-    {
-        return fahrenheit*(5/9)-32;
+    public static double convertFahrenheitToCelcius(double fahrenheit) {
+        return fahrenheit * (5 / 9) - 32;
+    }
+
+    /**
+     * Converts microseconds into regular seconds.
+     *
+     * @param microseconds - The time in micros
+     * @return the converted time in normal seconds.
+     */
+    public static double microToSec(double microseconds) {
+        return microseconds / 1000 / 1000;
+    }
+
+    /**
+     * Converts the regular seconds into microseconds.
+     *
+     * @param seconds - The amount of time in seconds.
+     * @return the time in microseconds
+     */
+    public static double secToMicro(double sec) {
+        return sec * 1000 * 1000;
     }
 }

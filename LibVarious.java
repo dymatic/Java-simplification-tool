@@ -1,7 +1,8 @@
-package libsubject;
+package libsubjectmobile;
 
 import java.io.IOException;
 import java.util.Calendar;
+
 /**
  * Contains the "other" stuff that LibMath and LibText didn't cover. Computer
  * related methods will be going in here.
@@ -281,10 +282,24 @@ public abstract class LibVarious {
     public static void execute(String exec) throws IOException {
         Runtime.getRuntime().exec(exec);
     }
-    public static String getTime()
-    {
+
+    public static String getTime() {
         return Calendar.getInstance().getTime().toString();
     }
-    
-   
+
+    /**
+     * In C++ booleans can be evaluated with integer values. If the statement is
+     * not 0 it is true, otherwise (case 0) it is false. This evaluates and
+     * integer value the same way C++ would.
+     *
+     * This easy method is designed to make porting large C++ projects over to
+     * java in a quick, easy-to-read way.
+     *
+     * @param toEval - The integer to evaluate
+     * @return true if the statement is not 0, false otherwise.
+     */
+    public static boolean cppBoolEval(int toEval) {
+
+        return toEval != 0;
+    }
 }//End of class
