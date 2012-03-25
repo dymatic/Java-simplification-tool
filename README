@@ -31,9 +31,7 @@ not contain a main class, but read #Future plans, because a future update may br
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #License
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
-These files are provided to you through the GNU General Public License Version 2. "GPL 2 is freedom. GPL 3 is a crusade."
-
-http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+These files are governed by my own custom license, the NRPL 0.01. The license is attached.
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
 #Credits
 ⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉⑉
@@ -42,4 +40,4 @@ http://library.thinkquest.org/20991/geo/solids.html - I used this for reference 
 
 http://www.java2s.com/Tutorial/Java/0120__Development/Javasystemproperties.htm - I was clueless about property accessors before I found this page. Huge thanks to whoever wrote it.
 ##People
-At the time of writing I am the only person who has directly worked on the code of this project or any of its attachments, including this README.
+Look at EDITORS for a full list.
