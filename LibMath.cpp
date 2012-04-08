@@ -1,11 +1,4 @@
-/*
- * File:   main.cpp
- * Author: nate
- *
- * Talk with a hardcoded chatting bot!
- *
- * Created on March 18, 2012, 3:06 PM
- */
+/*Supplies geometrical functions as well as data sanitization techniques.*/
 
 #include <cstdlib>
 #include <math.h>
