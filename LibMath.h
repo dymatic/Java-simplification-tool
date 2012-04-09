@@ -258,5 +258,4 @@ double triangularArea(double base, double height)
    double secToMicro(double sec) {
         return sec * 1000 * 1000;
     }
-int main(){return 0;}
 
