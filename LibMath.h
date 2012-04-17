@@ -55,7 +55,7 @@ double stdDev(double list[], int listLength)
     for (int index = 0; index < listLength; index++)
     {
         localList[index] = list[index];
-        localList[index] -= mean(localList, listLength);
+        localList[index] -= mean(list, listLength);
     }
 
     for (int index = 0; index < listLength; index++)
