@@ -1,5 +1,3 @@
-package libsubjectmobile;
-
 /**
  * This is a collection of formulas for dealing with numbers, simple operations,
  * and geometrical shapes. LibMath is not limited to just Math, and also covers
@@ -246,13 +244,13 @@ public abstract class LibMath {
         return mass / volume;
     }
 
-    /**
+        /**
      * Converts the celcius temperature to fahrenheit
      *
      * @param The temperature in celcius
      * @return The temperature in fahrenheit
      */
-    public static double convertCelciusToFahrenheit(double celcius) {
+   public static double convertCelciusToFahrenheit(double celcius) {
         return celcius * (9 / 5) + 32;
     }
 
@@ -262,9 +260,40 @@ public abstract class LibMath {
      * @param the fahrenheit temperature
      * @return the celcius temperature
      */
-    public static double convertFahrenheitToCelcius(double fahrenheit) {
+  public static double convertFahrenheitToCelcius(double fahrenheit) {
         return fahrenheit * (5 / 9) - 32;
     }
+/**
+  *Converts Fahrenheit to Kelvin.
+  *@param fahrenheit - The temperature in fahrenheit.
+  */
+  public static double convertFahrenheitToKelvin(double fahrenheit) {
+      return LibMath.convertFahrenheitToCelcius(fahrenheit)-273.15;
+  }
+
+  /**
+    *Converts celcius to kelvin.
+    *@param celcius - The temperature in celcius.
+    */
+  public static double convertCelciusToKelvin(double celcius){
+      return celcius-273.15;
+  }
+
+  /**
+    *Converts kelvin to Celcius.
+    *@param kelvin - The temperature in kelvin.
+    */
+ public static double convertKelvinToCelcius(double kelvin){
+      return kelvin+273.15;
+  }
+  /**
+    *Converts kelvin to fahrenheit
+    *@param kelvin - The temperature in Kelvin
+    */
+ public static double convertKelvinToFahrenheit(double kelvin)
+  {
+      return LibMath.convertCelciusToFahrenheit(convertKelvinToCelcius(kelvin));
+  }
 
     /**
      * Converts microseconds into regular seconds.
@@ -286,3 +315,4 @@ public abstract class LibMath {
         return sec * 1000 * 1000;
     }
 }
+
