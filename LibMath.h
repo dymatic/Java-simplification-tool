@@ -238,6 +238,37 @@ double triangularArea(double base, double height)
   double convertFahrenheitToCelcius(double fahrenheit) {
         return fahrenheit * (5 / 9) - 32;
     }
+/**
+  *Converts Fahrenheit to Kelvin.
+  *@param fahrenheit - The temperature in fahrenheit.
+  */
+  double convertFahrenheitToKelvin(double fahrenheit) {
+      return convertFahrenheitToCelcius(fahrenheit)-273.15;
+  }
+
+  /**
+    *Converts celcius to kelvin.
+    *@param celcius - The temperature in celcius.
+    */
+  double convertCelciusToKelvin(double celcius){
+      return celcius-273.15;
+  }
+
+  /**
+    *Converts kelvin to Celcius.
+    *@param kelvin - The temperature in kelvin.
+    */
+  double convertKelvinToCelcius(double kelvin){
+      return kelvin+273.15;
+  }
+  /**
+    *Converts kelvin to fahrenheit
+    *@param kelvin - The temperature in Kelvin
+    */
+  double convertKelvinToFahrenheit(double kelvin)
+  {
+      return convertCelciusToFahrenheit(convertKelvinToCelcius(kelvin));
+  }
 
     /**
      * Converts microseconds into regular seconds.
