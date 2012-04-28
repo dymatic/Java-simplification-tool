@@ -1,7 +1,11 @@
+#ifndef LIBMATH_H
+#define LIBMATH_H
 /*Supplies geometrical functions as well as data sanitization techniques.*/
 
 #include <cstdlib>
 #include <math.h>
+#include <iostream>
+using namespace std;
 /**
  * Adds all of the data in the array.
  *@param data - The list of data to add.
@@ -10,9 +14,10 @@
  */
 double addAll(double data[], int dataLength)
 {
-    double collector;
-    for(int index=0; index<dataLength; index++)
+    double collector=0;
+    for(int index=0; index<dataLength; index++){
         collector+=data[index];
+    }
     return collector;
 }
 
@@ -62,8 +67,8 @@ double stdDev(double list[], int listLength)
     {
         collector += square(localList[index]);
     }
-
-    return square(collector /= (listLength - 1));
+    collector /= (listLength - 1);
+    return sqrt(collector);
 
 }
 /**
@@ -199,7 +204,7 @@ double triangularArea(double base, double height)
      * @param The height of the cone's slant
      * @return The area of the cone.
      */
-     double coneArea(double radius, double height, double slant) {
+     double coneArea(double radius, double slant) {
         return (M_PI * slant * radius) + circularArea(radius);
     }
 
@@ -269,7 +274,6 @@ double triangularArea(double base, double height)
   {
       return convertCelciusToFahrenheit(convertKelvinToCelcius(kelvin));
   }
-
     /**
      * Converts microseconds into regular seconds.
      *
@@ -289,4 +293,6 @@ double triangularArea(double base, double height)
    double secToMicro(double sec) {
         return sec * 1000 * 1000;
     }
+
+#endif // LIBMATH_H
 
