@@ -26,19 +26,11 @@ The accompanying content which this license governs, which will be referred to
 as the "product" or "project", is able to be distributed in its entirety for
 public, personal, and commercial use.
 Selling exact copies of the product is permitted, granted that you make
-any consumers aware of the original creator in some external form.
-"External" can be a the attached license in either digital or printed
-form within the package or physical container in which the product
-is located. The source code of the product MUST be made freely
+any potential buyers aware of the original distributor.
+This license does not have to be attached to the software if it is mentioned that the product falls under the license of a stated revision. The source code of the product MUST be made freely
 editable and distributed in a decompiled, textual format. 
 Accompanying executables may be attached so long as the source
-code is distributed alongside it. If the source is not available,
-even if the executable is present, it goes against the terms of 
-this license; regardless of whether or not the distributor is willing
-to relinquish the source code at a later time or in a separate archive
-than the executable. To reiterate, the source of the product must be
-available in the same archive that contains this license. This does
-not require that it be contained in the same directory. When distributing
+code is distributed alongside it. If the source is not included with the product archive but is made freely available by the author in a seperate archive or upon request the product meets the requirement of this license. When distributing
 a product, you cannot claim it is another product by either imitating the
 name in such a way to obstruct the other or claiming to be affiliated with
 the author company of the other product.
@@ -46,7 +38,7 @@ the author company of the other product.
   Editors
 
 Editing the files governed by this license is permitted except for
-one exception, and that is this license (See: License hacking).
+one exception, and that is this license (See: License hacking) and any product that obscures another by using the same name or imitating a member of another product's staff (See: Distributors).
 Editors must give credit to the original creator of the file which
 is being edited, or include a centralized credit file that 
 describes the contributions of past editors and the author for
@@ -82,4 +74,5 @@ but rather the license chosen to replace it. To move from another
 license into the NRPL, the project must meet the requirements in
 this license mentioned in "Distributors" and "Editors". License
 shifting must also be legal under the definition of the license
-that the product is currently governed by.
+that the product is currently governed by. Join-licensing is another
+possibility.
