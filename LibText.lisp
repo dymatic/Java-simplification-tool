@@ -1,0 +1,96 @@
+;A library for handling text and file IO.
+;Port of LibText.java with some addded Lispy features.
+(defun catStrList (lis &optional toSep)
+  "Concatenate a list together, optionally seperating them"
+  (if (null (cdr lis)) (car lis);Is null coming? Return the current element
+    (concatenate 'string (string (car lis));
+		 (if (null toSep) (string "") toSep)
+    (string (catStrList (cdr lis) toSep)))))
+
+(defun makeLineList (file)
+"Make a list where each line is a member of a list"
+  (with-open-file (of file
+		      :direction :input)
+    (loop
+       for line = (read-line of nil 'eof)
+       until (eq line 'eof)
+       collect  line)))
+
+(defun newlineItem (lis)
+"Format a list so that every item appears on its own line"
+  (format t (catstrlist lis "~%")));Just uses the optional parameter toSep
+
+(defun getFileText (filename)
+"Get every line from a file and push it out on its own line"
+  (newlineitem (makelinelist filename)))
+    
+(defun rev (text &optional count)
+"Reverse text. Do not supply the optional argument. It is used within the function body"
+(let ((counter (length text)));Counter is the position of the original string
+  (if (not (null count)) (setf counter count))
+     (if (= counter 1) (char text 0)
+	   (concatenate 'string (string;Concatenate the letters backwards.
+				 (char text counter))
+			(string (rev text (- counter 1)))))))
+
+(defun revList (lis)
+"Reverse every element in a list, keeping them in order"
+(if (null lis) nil
+    (cons (rev (string (car lis))) (revList (cdr lis)))))
+
+(defun revFile (filename)
+"Reverse the lines of a file compeltely, keeping them in order and in a list."
+(revList (makelinelist filename)))
+
+(defun assignL (varList assignList)
+"Assign the variables in varlist the values in varlist"
+(if (null (cdr varlist)) (setf (car varlist) (car assignList))
+    (progn (setf (car varlist) (car assignlist))
+	   (assignL (cdr varlist) (cdr assignlist)))))
+
+(defun recequal (var list)
+"Check to see if the first value is equal to any of values in the list"
+(if (null list) t
+    (and (equal var (car list)) (recequal var (cdr list)))))
+
+(defun recnqual (var list)
+"Check to see if the first value is not equal to any of the values in the list"
+(if (null list) t
+    (and (not (equal var (car list))) (recnqual var (cdr list)))))
+
+(defun assign (x y)
+"Set x to y and y to x"
+(let ((temp x))
+  (setf x y)
+  (setf y temp)))
+
+(defun swap (string ind1 ind2 &optional skip)
+"Swap two indexes within a sequence, but only if they are not the same character or &skip"
+(if (null skip)
+    (if (not (equal (char string ind1) (char string ind2)))
+	(rotatef (char string ind1) (char string ind2)))
+    (if (and 
+	 (recnqual 
+	  (string (char string ind1)) 
+	  `(,(string (char string ind2)) ,skip))
+	 (recnqual 
+	  (string (char string ind2)) 
+	  `( ,(string (char string ind1)) ,skip)))
+	(rotatef (char string ind1) (char string ind2)))))
+	
+    
+(defun unpredicScramble (toScram &optional counter)
+"Unpredictably scramble a string,"
+(let ((localCopy toScram))
+(if (null counter) (setf counter (length toScram)))
+(if (equal counter 0) localCopy
+    (progn  (swap localCopy (random (length localCopy)) (random (length localCopy)))
+	     (unpredicScramble localCopy (- counter 1))))))
+
+(defun unpredicScrambleIgnore (toScram  ignore &optional counter)
+"Unpredictably scramble, leaving &ignore untouched. Set counter to 25 or not at all"
+(let ((localCopy toScram))
+(if (null counter) (setf counter (length toScram)))
+(if (equal counter 0) localCopy
+    (progn  (swap localCopy (random (length localCopy )) (random (length localCopy)) ignore) (unpredicScrambleIgnore localCopy ignore (- counter 1))))))
+
